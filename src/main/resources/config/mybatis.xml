@@ -7,7 +7,7 @@
             http://mybatis.org/schema/mybatis-spring
             http://mybatis.org/schema/mybatis-spring.xsd">
 
-    <mybaits:scan base-package="com.dataeye.citest.dao" template-ref="sqlSessionTemplate"/>
+    <mybaits:scan base-package="com.dataeye.web.dao" template-ref="sqlSessionTemplate"/>
 
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg index="0" ref="sqlSessionFactory"/>
@@ -16,7 +16,7 @@
 		<property name="dataSource" ref="dataSource"/>
 		<property name="configLocation" value="classpath:config/sqlMapConfig.xml"/>
 		<property name="mapperLocations" value="classpath:mapper/*.xml"/>
-		<property name="typeAliasesPackage" value="com.dataeye.citest.dao.domain"/>
+		<property name="typeAliasesPackage" value="com.dataeye.web.dao.domain"/>
 	</bean>
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
