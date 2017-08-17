@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <property name="HOME_PATH" value="target/logs" scope="CONTEXT" />
+    <property name="DEFAULT_PATTERN" value="%d{yyy-MM-dd HH:mm:ss.SSS} [%t] %level %logger: %msg%n" scope="CONTEXT" />
+
+    <!-- 设置控制台日志输出格式 -->
+    <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <Pattern>${DEFAULT_PATTERN}</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="running_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <FileNamePattern>${HOME_PATH}/running-%d{yyyy-MM-dd}.log</FileNamePattern>
+            <MaxHistory>30</MaxHistory>
+        </rollingPolicy>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>${DEFAULT_PATTERN}</pattern>
+        </layout>
+    </appender>
+
+    <root level="debug">
+        <appender-ref ref="stdout" />
+        <appender-ref ref="running_log" />
+    </root>
+</configuration>
